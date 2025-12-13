@@ -1,22 +1,72 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
     <title>FIRST & FOLLOW Calculator</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body class="bg-light">
 
-<div class="container mt-5">
-    <h2 class="mb-4">FIRST & FOLLOW Calculator</h2>
+<div class="container py-5">
+    <h2 class="mb-4 text-center">FIRST & FOLLOW Set Calculator</h2>
 
-    <textarea id="grammar" class="form-control mb-3" rows="8"
-        placeholder='Paste grammar JSON here'></textarea>
+    <div class="card shadow-sm mb-4">
+        <div class="card-body">
+            <h5 class="card-title">Grammar Input (JSON)</h5>
+            <textarea id="grammar"
+                      class="form-control font-monospace"
+                      rows="8"
+                      placeholder='{
+  "productions": {
+    "S": ["A B"],
+    "A": ["a", "ε"],
+    "B": ["b"]
+  }
+}'></textarea>
 
-    <button class="btn btn-primary" onclick="send()">Compute</button>
+            <div class="mt-3 text-end">
+                <button class="btn btn-primary" onclick="compute()">Compute</button>
+            </div>
+        </div>
+    </div>
 
-    <hr>
+    <div id="output" class="d-none">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">FIRST Sets</h5>
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Non-terminal</th>
+                                    <th>FIRST</th>
+                                </tr>
+                            </thead>
+                            <tbody id="first-table"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
 
-    <pre id="result" class="bg-white p-3 mt-3"></pre>
+            <div class="col-md-6">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">FOLLOW Sets</h5>
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Non-terminal</th>
+                                    <th>FOLLOW</th>
+                                </tr>
+                            </thead>
+                            <tbody id="follow-table"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 <script src="/static/main.js"></script>
