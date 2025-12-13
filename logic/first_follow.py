@@ -80,13 +80,23 @@ grammer = {
 #     'D': ["d", "ε"]
 # }
 
-first = get_first(grammer)
-for A, firsts in first.items():
-    print("FIRST(" + A, end=") = ")
-    print(sorted(firsts))
+# first = get_first(grammer)
+# for A, firsts in first.items():
+#     print("FIRST(" + A, end=") = ")
+#     print(sorted(firsts))
 
 
-follow = get_follow(grammer, first)
-for A, follows in follow.items():
-    print("FOLLOW(" + A, end=") = ")
-    print(sorted(follows))
+# follow = get_follow(grammer, first)
+# for A, follows in follow.items():
+#     print("FOLLOW(" + A, end=") = ")
+#     print(sorted(follows))
+    
+    
+def compute_first_follow(grammer_data):
+    first = get_first(grammer_data["productions"])
+    follow = get_follow(grammer_data["productions"], first)
+    
+    return {
+        "first": first,
+        "follow": follow
+    }
