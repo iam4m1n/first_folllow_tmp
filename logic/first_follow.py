@@ -97,6 +97,6 @@ def compute_first_follow(grammer_data):
     follow = get_follow(grammer_data["productions"], first)
     
     return {
-        "first": first,
-        "follow": follow
+        "first": {k: sorted(v) for k, v in first.items()},
+        "follow": {k: sorted(v) for k, v in follow.items()}
     }
